@@ -2,6 +2,15 @@
 
 Portfolio + commerce experience for selling original artwork.
 
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
 ## Product Vision
 
 Create an internship-worthy art platform where:

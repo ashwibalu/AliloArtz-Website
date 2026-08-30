@@ -137,3 +137,18 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# local catalog edits and orders
+/data/catalog.json
+/data/orders.json
+/data/*.tmp
+
+# uploaded artwork
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# vercel
+.vercel
+
+# typescript
+next-env.d.ts
