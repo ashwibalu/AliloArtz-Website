@@ -121,7 +121,3 @@ This should showcase modern web development skills while staying practical to bu
 3. Build Phase 1 pages with static data first
 4. Connect database and auth
 5. Add payments and order flow
-
----
-
-If you want, next I can generate the full Phase 1 code structure (components, routes, sample data, and styling system) as soon as Node.js is available.
