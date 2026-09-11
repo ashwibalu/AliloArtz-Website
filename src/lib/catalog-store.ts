@@ -17,19 +17,20 @@ async function readJson<T>(filePath: string, fallback: T): Promise<T> {
 }
 
 async function writeJson(filePath: string, value: unknown) {
-  await fs.mkdir(path.dirname(filePath), { recursive: true });
-  const tmp = `${filePath}.tmp`;
-  await fs.writeFile(tmp, JSON.stringify(value, null, 2), "utf8");
-  await fs.rename(tmp, filePath);
+  try {
+    await fs.mkdir(path.dirname(filePath), { recursive: true });
+    await fs.writeFile(filePath, JSON.stringify(value, null, 2), "utf8");
+  } catch (error) {
+    // Vercel’s filesystem is not writable the way a local disk is.
+    // Gallery seed data still works in memory; studio/order writes will not persist.
+    console.warn(`Could not write ${filePath}`, error);
+  }
 }
 
 export async function getCatalog(): Promise<Catalog> {
   const catalog = await readJson<Catalog | null>(catalogPath, null);
   if (catalog?.boards?.length && catalog.artworks) return catalog;
-
-  const seeded: Catalog = { boards, artworks };
-  await saveCatalog(seeded);
-  return seeded;
+  return { boards, artworks };
 }
 
 export async function saveCatalog(catalog: Catalog) {
